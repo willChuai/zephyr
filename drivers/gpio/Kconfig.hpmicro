@@ -1,0 +1,12 @@
+# Copyright 2022 hpmicro
+# SPDX-License-Identifier: Apache-2.0
+DT_COMPAT_HPMICRO_HPM_GPIO := hpmicro,hpm-gpio
+
+config GPIO_HPMICRO
+	bool "HPMicro GPIO driver"
+	depends on (SOC_SERIES_HPMICRO)
+	depends on (HAS_HPMSDK_GPIO)
+	default $(dt_compat_enabled,$(DT_COMPAT_HPMICRO_HPM_GPIO))
+	select HAS_DTS_GPIO
+	help
+	  Enable the hpmicro gpio driver.
