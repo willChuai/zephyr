@@ -1,0 +1,55 @@
+# Copyright 2022 hpmicro
+# SPDX-License-Identifier: Apache-2.0
+
+description: HPMicro PinMux
+
+compatible: "hpmicro,hpm-pinctrl"
+
+include:
+    - name: base.yaml
+    - name: pincfg-node-group.yaml
+      child-binding:
+        child-binding:
+          property-allowlist:
+            - drive-open-drain
+            - input-enable
+            - bias-disable
+            - bias-pull-down
+            - bias-pull-up
+            - input-schmitt-enable
+
+child-binding:
+  description: HPMicro pin controller pin group
+  child-binding:
+    description: |
+      HPMicro pin controller pin configuration node.
+    properties:
+      pinmux:
+        required: true
+        type: array
+        description: |
+          Represents pin mux settings. Use HPMICRO_PINMUX
+          With:
+          - pin: The gpio pin number (0, 1, ..., GPIO_NUM_MAX)
+          - analog: bool, select analog pin in pad
+          - alt_select: alt0-alt31
+      drive-strength:
+        required: false
+        type: string
+        default: "r000"
+        enum:
+          - "r000"
+          - "r001"
+          - "r010"
+          - "r011"
+          - "r100"
+          - "r101"
+          - "r110"
+          - "r111"
+      power-source:
+        required: false
+        type: string
+        default: "v3_3"
+        enum:
+          - "v3_3"
+          - "v1_8"
