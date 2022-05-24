@@ -1,0 +1,20 @@
+/*
+ * Copyright 2022 hpmicro
+ * SPDX-License-Identifier: Apache-2.0
+ */
+ #include <zephyr/dt-bindings/pinctrl/hpmicro-pinctrl-common.h>
+&pinctrl {
+	pinmux_uart0: pinmux_uart0 {
+		group0 {
+			pinmux = <HPMICRO_PINMUX(455, 0, 2)>, <HPMICRO_PINMUX(454, 0, 2)>;
+		};
+	};
+	pinmux_gpiob: pinmux_gpiob {
+		group0 {
+			pinmux = <HPMICRO_PINMUX(50, 0, 0)>,
+			<HPMICRO_PINMUX(51, 0, 0)>,
+			<HPMICRO_PINMUX(52, 0, 0)>;
+			bias-pull-down;
+		};
+	};
+};

@@ -1,0 +1,17 @@
+# Copyright 2022 hpmicro
+# SPDX-License-Identifier: Apache-2.0
+
+identifier: hpm6750evkmini
+name: HPMicro hpm6750evkmini
+type: mcu
+arch: riscv32
+toolchain:
+  - zephyr
+  - cross-compile
+ram: 1024
+supported:
+  - gpio
+  - uart
+testing:
+  ignore_tags:
+    - bluetooth

@@ -1,0 +1,9 @@
+# Copyright (c) 2022 hpmicro
+# SPDX-License-Identifier: Apache-2.0
+
+if BOARD_HPM_6750EVKMINI
+
+config BOARD
+	default "hpm6750evkmini"
+
+endif #BOARD_HPM_6750EVKMINI
