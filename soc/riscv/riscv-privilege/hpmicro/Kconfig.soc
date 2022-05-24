@@ -1,0 +1,56 @@
+# Copyright 2022 hpmicro
+# SPDX-License-Identifier: Apache-2.0
+
+choice
+prompt "HPMicro HPM6700_6400 SoC Selection"
+depends on SOC_SERIES_HPMICRO
+
+config SOC_HPM6750
+	bool "HPMicro HPM6750 SoC implementation"
+	select ATOMIC_OPERATIONS_BUILTIN
+	select INCLUDE_RESET_VECTOR
+	select HAS_HPMSDK_UART
+	select HAS_HPMSDK_GPIO
+	select HAS_HPMSDK_PINCTRL
+	select HAS_HPMSDK_PDM
+	select HAS_HPMSDK_PLLCTL
+	select HAS_HPMSDK_PMP
+
+config SOC_HPM6360
+	bool "HPMicro HPM6360 SoC implementation"
+	select ATOMIC_OPERATIONS_BUILTIN
+	select INCLUDE_RESET_VECTOR
+	select HAS_HPMSDK_UART
+	select HAS_HPMSDK_GPIO
+	select HAS_HPMSDK_PINCTRL
+	select HAS_HPMSDK_PDM
+	select HAS_HPMSDK_PLLCTLV2
+	select HAS_HPMSDK_PMP
+
+endchoice
+
+if SOC_SERIES_HPMICRO
+
+choice
+prompt "FPU options"
+default SOC_HPMICRO_SINGLE_PRECISION_FPU
+
+config SOC_HPMICRO_NO_FPU
+	bool "No FPU"
+
+config SOC_HPMICRO_SINGLE_PRECISION_FPU
+	bool "Single precision FPU"
+	select CPU_HAS_FPU
+
+config SOC_HPMICRO_DOUBLE_PRECISION_FPU
+	bool "Double precision FPU"
+	select CPU_HAS_FPU_DOUBLE_PRECISION
+
+endchoice
+
+config SOC_HPMICRO_HWDSP
+	bool "AndeStar V5 DSP ISA"
+	select RISCV_SOC_CONTEXT_SAVE
+	depends on !RISCV_GENERIC_TOOLCHAIN
+
+endif # SOC_SERIES_HPMICRO
