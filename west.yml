@@ -75,6 +75,11 @@ manifest:
       path: modules/hal/gigadevice
       groups:
         - hal
+    - name: hal_hpmicro
+      revision: 4f07ff60858add71f73955c4238508397b117759
+      path: https://github.com/hpmicro/zephyr_hal_hpmicro.git
+      groups:
+        - hal
     - name: hal_infineon
       revision: 4af06965f57ba1e7d170e6a97d24c33785543a8c
       path: modules/hal/infineon
